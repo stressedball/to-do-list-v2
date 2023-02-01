@@ -20,14 +20,17 @@ function Root() {
     setRootTasks(getLocal())
   }
 
+  const addProject = (project) => {
+    // project.id = uniqid()
+  }
+
   const handleEditWrite = (id, value) => {
     for (let i = 0; i < localStorage.length; i++) {
       const key = localStorage.key(i)
       const task = JSON.parse(localStorage.getItem(localStorage.key(i)))
       if (task.id === id) {
-        const copyTask = task
-        copyTask.title = value
-        localStorage.setItem(key, JSON.stringify(copyTask))
+        task.title = value
+        localStorage.setItem(key, JSON.stringify(task))
         setRootTasks(getLocal())
         return
       }
@@ -39,9 +42,21 @@ function Root() {
       const key = localStorage.key(i)
       const task = JSON.parse(localStorage.getItem(localStorage.key(i)))
       if (task.id === id) {
-        const copyTask = task
-        copyTask.important = task.important === "" ? "important" : ""
-        localStorage.setItem(key, JSON.stringify(copyTask))
+        task.important = task.important === "" ? "important" : ""
+        localStorage.setItem(key, JSON.stringify(task))
+        setRootTasks(getLocal())
+        break
+      }
+    }
+  }
+
+  const handleDueDateWrite = (date, id) => {
+    for (let i = 0; i < localStorage.length; i++) {
+      const key = localStorage.key(i)
+      const task = JSON.parse(localStorage.getItem(localStorage.key(i)))
+      if (task.id === id) {
+        task.dueDate = date
+        localStorage.setItem(key, JSON.stringify(task))
         setRootTasks(getLocal())
         break
       }
@@ -66,6 +81,7 @@ function Root() {
             tasks={tasks}
             handleEditWrite={handleEditWrite}
             handleImportantWrite={handleImportantWrite}
+            handleDueDateWrite={handleDueDateWrite}
           />
         },
         {
@@ -74,13 +90,15 @@ function Root() {
             tasks={tasks}
             handleEditWrite={handleEditWrite}
             handleImportantWrite={handleImportantWrite}
-          />
+            handleDueDateWrite={handleDueDateWrite}
+            />
         },
         {
           path: "/important-tasks",
           element: <ImportantTasks
             tasks={tasks}
             handleEditWrite={handleEditWrite}
+            handleDueDateWrite={handleDueDateWrite}
             handleImportantWrite={handleImportantWrite}
           />
         },

@@ -12,6 +12,7 @@ body {
 
 #main-container{
   grid-area: 2/2/2/2;
+  padding: 2rem;
 }
 
 #sidebar{
@@ -39,9 +40,11 @@ body {
 .task{
   display: flex;
   gap: 1rem;
+  align-items: center;
   justify-content: space-between;
   border: 1px solid;
   flex: 1 0 auto;
+  padding: 0.5rem;
 }
 
 .icon{

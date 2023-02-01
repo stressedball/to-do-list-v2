@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 
-export default function AddTask({ addTask }) {
+export default function AddTask({ addTask, setSelectedOption }) {
     const [newTask, setNewTask] = useState('')
     const [important, setImportant] = useState(false)
     const [startDate, setStartDate] = useState(null);
@@ -19,17 +19,7 @@ export default function AddTask({ addTask }) {
 
         const title = newTask;
 
-        console.log(startDate)
-        return
-        let dueDate
-        if (startDate === null) dueDate = ''
-        else dueDate = startDate.toLocaleDateString("en-GB", {
-            day: "2-digit",
-            month: "2-digit",
-            year: "numeric"
-        });
-
-        const taskToAdd = { title: title, important: important, dueDate: dueDate }
+        const taskToAdd = { title: title, important: important, dueDate: startDate }
         addTask(taskToAdd)
     }
 
@@ -87,8 +77,7 @@ export default function AddTask({ addTask }) {
                     onChange={(date) => setStartDate(date)}
                 />
             </div>
-
-            <p>append to project</p>
+            <button onClick={() => setSelectedOption('AddProject')}>Switch to Projects</button>
         </div>
     )
 }

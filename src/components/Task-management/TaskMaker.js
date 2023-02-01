@@ -3,14 +3,14 @@ import uniqid from 'uniqid'
 import { useState } from 'react'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import parseISO from 'date-fns/parseISO'
+import isValid from 'date-fns/isValid';
 
-export default function TaskMaker({ task, handleImportantWrite, handleEditWrite }) {
+export default function TaskMaker({ task, handleImportantWrite, handleEditWrite, handleDueDateWrite }) {
+
     const [isImportant, setIsImportant] = useState(task.important)
     const [taskText, setTaskText] = useState(task.title)
-    const handleRemove = (e) => {
-
-    }
-
+    const [dueDate, setDueDate] = useState(getDueDate(task.dueDate))
     const handleImportant = (e) => {
         handleImportantWrite(e.target.parentElement.parentElement.id)
         setIsImportant(!isImportant)
@@ -23,12 +23,14 @@ export default function TaskMaker({ task, handleImportantWrite, handleEditWrite 
     const handleDone = () => {
 
     }
+
     const saveEdit = (e) => {
         handleEditWrite(e.target.parentElement.parentElement.id, e.target.value)
         setTaskText(task.title)
     }
 
     return (
+
         <div
             id={task.id}
             className="task"
@@ -55,15 +57,22 @@ export default function TaskMaker({ task, handleImportantWrite, handleEditWrite 
                     onClick={handleImportant}
                 >
                 </img>
-                {/* change to Date from React */}
-                <p>{task.dueDate}</p>
-                <DatePicker value={new Date("2023-02-02") }/>
-                {/* <img
-                    src="./assets/remove-svgrepo-com.svg"
-                    onClick={handleRemove}
-                    className="icon" /> */}
+                <DatePicker
+                    dateFormat="dd-MM-yyyy"
+                    selected={dueDate}
+                    onChange={date => {
+                        setDueDate(date)
+                        handleDueDateWrite(date, task.id)
+                    }}
+                />
             </div>
         </div>
     )
+}
+
+const getDueDate = date => {
+    const parsedDate = parseISO(date);
+    if (isValid(parsedDate)) { return parsedDate }
+    return null
 }
 
