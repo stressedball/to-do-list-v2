@@ -1,0 +1,66 @@
+body {
+  margin: 0;
+}
+
+/* PERSISTENT */
+.App{
+  display: grid;
+  grid-template-columns: 30% 70%;
+  grid-template-rows: 30% 70%;
+  height: 100vh;
+}
+
+#main-container{
+  grid-area: 2/2/2/2;
+}
+
+#sidebar{
+  grid-area: 1/1/2/1;
+}
+
+#make-task{
+  grid-area: 1/2/1/2;
+}
+
+#mark-as-important:hover{
+  filter: invert(12%) sepia(90%) saturate(7498%) hue-rotate(344deg) brightness(99%) contrast(105%);
+}
+
+.important{
+  filter: invert(12%) sepia(90%) saturate(7498%) hue-rotate(344deg) brightness(99%) contrast(105%);
+}
+
+.task-list{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.task{
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  border: 1px solid;
+  flex: 1 0 auto;
+}
+
+.icon{
+  width: 30px;
+}
+
+.icon-container{
+  display: flex;
+  gap: 30px;
+}
+
+.links{
+  text-decoration: none;
+}
+
+.underline{
+  text-decoration: underline;
+}
+
+.task-text{
+  flex: 1 0 auto;
+}
