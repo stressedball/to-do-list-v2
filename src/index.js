@@ -11,6 +11,7 @@ import uniqid from 'uniqid'
 
 function Root() {
   const [rootTasks, setRootTasks] = useState(getLocal())
+  const [rootProjects, setRootProjects] = useState(getLocalProjects())
   const [tasks, setTasks] = useState([])
   const [projects, setProjects] = useState([])
 
@@ -21,7 +22,9 @@ function Root() {
   }
 
   const addProject = (project) => {
-    // project.id = uniqid()
+    project.id = uniqid()
+    localStorage.setItem(`${project.id}, project`, JSON.stringify(project))
+    setRootProjects(getLocalProjects())
   }
 
   const handleEditWrite = (id, value) => {
@@ -64,15 +67,18 @@ function Root() {
   }
 
   useEffect(() => {
-
     setTasks(rootTasks)
-  }, [rootTasks])
+    setProjects(rootProjects)
+  }, [rootTasks, rootProjects])
 
   const router = createBrowserRouter([
     {
       path: "/",
       element: <App
         addTask={addTask}
+        tasks={tasks}
+        addProject={addProject}
+        projects={projects}
       />,
       children: [
         {
@@ -124,8 +130,22 @@ function getLocal() {
   let arr = []
   for (let i = 0; i < localStorage.length; i++) {
     const key = localStorage.key(i)
-    const value = JSON.parse(localStorage.getItem(key))
-    arr.push(value)
+    if (key.split(',').length <= 1) {
+      const value = JSON.parse(localStorage.getItem(key))
+      arr.push(value)
+    }
+  }
+  return arr
+}
+
+function getLocalProjects() {
+  let arr = []
+  for (let i = 0; i < localStorage.length; i++) {
+    const key = localStorage.key(i)
+    if (key.split(',').length > 1) {
+      const value = JSON.parse(localStorage.getItem(key))
+      arr.push(value)
+    }
   }
   return arr
 }

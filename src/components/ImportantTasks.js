@@ -4,9 +4,9 @@ import uniqid from 'uniqid'
 
 export default function ImportantTasks({ tasks, handleEditWrite, handleImportantWrite, handleDueDateWrite }) {
 
-    const [showTasks, setShowTasks] = useState(tasks)
+    const [weekTasks, setWeekTasks] = useState(tasks)
 
-    const displayTasks = showTasks.map(el => {
+    const displayTasks = weekTasks.map(el => {
 
         if (el.important === "important") {
             return (
@@ -21,7 +21,7 @@ export default function ImportantTasks({ tasks, handleEditWrite, handleImportant
 
     useEffect(() => {
 
-        setShowTasks(tasks)
+        setWeekTasks(tasks)
     }, [tasks])
 
     return (

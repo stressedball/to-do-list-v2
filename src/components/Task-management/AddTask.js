@@ -28,7 +28,9 @@ export default function AddTask({ addTask, setSelectedOption }) {
     const handleImportant = () => { setImportant(!important) }
 
     useEffect(() => {
+
         document.querySelector('#mark-as-important').classList.remove('important')
+        
         if (important) {
             document.querySelector('#mark-as-important').classList.add('important')
         }
@@ -39,10 +41,12 @@ export default function AddTask({ addTask, setSelectedOption }) {
         <div id="make-task">
 
             <div style={{
-                display:"flex"
+                display: "flex"
             }}>
                 <p>Enter a new task</p>
-                <input value={newTask} onChange={handleChange}></input>
+                <input value={newTask}
+                    onChange={handleChange}
+                    placeholder='So much to do...Where should I start?'></input>
                 <button onClick={handleClick}>Add task</button>
             </div>
 
@@ -64,8 +68,8 @@ export default function AddTask({ addTask, setSelectedOption }) {
             <div id="set-date"
                 style={{
                     display: "flex",
-                    alignItems:"center"
-            }}>
+                    alignItems: "center"
+                }}>
                 <p>Set due date</p>
                 <img
                     src="./assets/calendar-svgrepo-com.svg"
@@ -77,7 +81,7 @@ export default function AddTask({ addTask, setSelectedOption }) {
                     onChange={(date) => setStartDate(date)}
                 />
             </div>
-            <button onClick={() => setSelectedOption('AddProject')}>Switch to Projects</button>
+            <button className="make-switcher" onClick={() => setSelectedOption('AddProject')}>Switch to Projects</button>
         </div>
     )
 }

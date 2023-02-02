@@ -8,6 +8,7 @@ export default function AllTasks({tasks, handleEditWrite, handleImportantWrite, 
     const displayTasks = allTasks.map(el => {
 
         return (
+            
             <TaskMaker key={uniqid()} task={el}
                 handleEditWrite={handleEditWrite}
                 handleImportantWrite={handleImportantWrite}
