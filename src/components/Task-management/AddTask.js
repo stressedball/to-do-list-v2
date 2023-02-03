@@ -38,22 +38,16 @@ export default function AddTask({ addTask, setSelectedOption }) {
 
     return (
 
-        <div id="make-task">
+        <div className="make tasks">
 
-            <div style={{
-                display: "flex"
-            }}>
-                <p>Enter a new task</p>
+            <div className="horizontal">
                 <input value={newTask}
                     onChange={handleChange}
                     placeholder='So much to do...Where should I start?'></input>
                 <button onClick={handleClick}>Add task</button>
             </div>
 
-            <div style={{
-                display: "flex",
-                alignItems: "center"
-            }}>
+            <div className="horizontal">
                 <p>Mark as important</p>
                 <img
                     id="mark-as-important"
@@ -62,20 +56,18 @@ export default function AddTask({ addTask, setSelectedOption }) {
                     }}
                     src="./assets/important-svgrepo-com.svg"
                     onClick={handleImportant}
+                    alt='important-icon'
                 ></img>
             </div>
 
             <div id="set-date"
-                style={{
-                    display: "flex",
-                    alignItems: "center"
-                }}>
-                <p>Set due date</p>
+                className="horizontal">
                 <img
                     src="./assets/calendar-svgrepo-com.svg"
                     className="icon"
                 ></img>
                 <DatePicker
+                    style={{width: "auto"}}
                     dateFormat="dd-MM-yyyy"
                     selected={startDate}
                     onChange={(date) => setStartDate(date)}

@@ -1,5 +1,7 @@
 # Remake of to-do-list using React
 
+# Use of date-fns and react-date-picker to manage dates
+
 # Home page should list all tasks
 
 # Make all tasks

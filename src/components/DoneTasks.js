@@ -2,14 +2,15 @@ import { useEffect, useState } from "react"
 import TaskMaker from "./Task-management/TaskMaker"
 import uniqid from 'uniqid'
 
-export default function AllTasks({ tasks, handleEditWrite, handleImportantWrite, handleDueDateWrite, handleDoneWrite, handleAppendTaskWrite }) {
+export default function DoneTasks({ tasks, handleDoneWrite, handleEditWrite, handleDueDateWrite, handleImportantWrite, handleAppendTaskWrite }) {
 
-    const [allTasks, setAllTasks] = useState(tasks)
+    const [doneTasks, setDoneTasks] = useState(tasks)
 
-    const displayTasks = allTasks.map(el => {
-        if (!el.done) {
+    const displayTasks = doneTasks.map(el => {
+
+        if (el.done) {
+
             return (
-
                 <TaskMaker key={uniqid()} task={el}
                     handleEditWrite={handleEditWrite}
                     handleImportantWrite={handleImportantWrite}
@@ -19,17 +20,16 @@ export default function AllTasks({ tasks, handleEditWrite, handleImportantWrite,
                 />
             )
         }
-
     })
 
     useEffect(() => {
 
-        setAllTasks(tasks)
+        setDoneTasks(tasks)
     }, [tasks])
 
     return (
+        <div className='task-list'>
 
-        <div className="task-list">
             {displayTasks}
         </div>
     )

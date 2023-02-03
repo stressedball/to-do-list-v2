@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 
-export default function AddProject({ setSelectedOption, tasks, addProject }) {
+export default function AddProject({ setSelectedOption, addProject }) {
+
     const [newProject, setNewProject] = useState('')
-    const [matchingTasks, setMatchingTasks] = useState([])
 
     const handleChange = (e) => { setNewProject(e.target.value) }
 
@@ -16,35 +16,25 @@ export default function AddProject({ setSelectedOption, tasks, addProject }) {
         addProject(projectToAdd)
     }
 
-    const handleSearch = (e) => {
-        tasks.filter(task => {
-            if (task.title.includes(e.target.value)) {
-                setMatchingTasks([...matchingTasks, task])
-            }
-        })
-    }
-
-    useEffect(() => {
-        // setMatchingTasks([])
-    }, [matchingTasks])
-    console.log(newProject)
     return (
-        <div>
-            <div style={{
-                display: "flex"
-            }}>
+        <div className="make project">
+
+            <div className="horizontal">
                 <p>Enter a new Project</p>
+
                 <input value={newProject}
                     onChange={handleChange}
                     placeholder="Build your dream project"
                 ></input>
+
                 <button onClick={handleClick}>Add Project</button>
             </div>
-            <div>
-                <p>Search for a task to append it to your Project</p>
-                <input id="task-search" type="text" onChange={handleSearch}></input>
-            </div>
+
+            <p>You can append any task to your project by dragging the task and dropping it to the Project once created.</p>
+
             <button className="make-switcher" onClick={() => setSelectedOption('AddTask')}>Switch to Tasks</button>
+
         </div>
     )
 }
+

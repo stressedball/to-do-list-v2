@@ -4,7 +4,7 @@ import { Outlet } from "react-router-dom";
 import { useEffect, useState } from "react";
 import AddProject from "./components/Project-Management/AddProject";
 
-function App({ addTask, tasks, addProject, projects }) {
+function App({ addTask, tasks, addProject, projects, handleAppendTaskWrite }) {
   const [selectedOption, setSelectedOption] = useState('AddProject');
   const [selectedView, setSelectView] = useState('/all-tasks')
 
@@ -25,7 +25,10 @@ function App({ addTask, tasks, addProject, projects }) {
 
     <div className="App">
 
-      < SideBar changeTab={changeTab} projects={projects} />
+      < SideBar changeTab={changeTab}
+        projects={projects}
+        handleAppendTaskWrite={handleAppendTaskWrite}
+      />
 
       {selectedOption === 'AddTask' ? (
         <AddTask addTask={addTask} setSelectedOption={setSelectedOption} />
