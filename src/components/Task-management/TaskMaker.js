@@ -1,43 +1,62 @@
-
 import { useState } from 'react'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import parseISO from 'date-fns/parseISO'
 import isValid from 'date-fns/isValid';
+import { useDispatch } from "react-redux";
 
-export default function TaskMaker({ task, handleImportantWrite, handleEditWrite, handleDueDateWrite, handleDoneWrite }) {
+export default function TaskMaker({
+    task,
+}) {
 
-    const [isImportant, setIsImportant] = useState(task.important)
-    const [taskText, setTaskText] = useState(task.title)
-    const [dueDate, setDueDate] = useState(getDueDate(task.dueDate))
-    const [done, setDone] = useState(() => {
-        if (task.done) return task.done
-        return false
-    })
-
-    const handleImportant = (e) => {
-        handleImportantWrite(e.target.parentElement.parentElement.id)
-        setIsImportant(!isImportant)
+    const taskId = task[0]
+    const taskDetails = task[1]
+    const isImportant = taskDetails.important
+    const [taskText, setTaskText] = useState(taskDetails.title)
+    const [dueDate, setDueDate] = useState(getDueDate(taskDetails.dueDate))
+    const done = taskDetails.done ? taskDetails.done : false
+    const dispatch = useDispatch()
+    
+    const handleImportant = e => {
+        dispatch({
+            type: 'SET_IMPORTANT',
+            id: e.target.parentElement.parentElement.id
+        })
     }
 
-    const handleEdit = (e) => {
+    // helper otherwise localStorage only registers first input
+    const handleEdit = e => {
         setTaskText(e.target.value)
     }
 
-    const handleDone = (e) => {
-        handleDoneWrite(e.target.id, e.target.checked)
-        setDone(task.done)
+    const handleDone = e => {
+        dispatch({
+            type: 'TASK_DONE',
+            id: e.target.id,
+            done: e.target.checked
+        })
     }
 
-    const saveEdit = (e) => {
-        handleEditWrite(e.target.parentElement.parentElement.id, e.target.value)
-        setTaskText(task.title)
+    const handleSaveEdit = e => {
+        dispatch({
+            type: 'TITLE_EDIT',
+            id: e.target.parentElement.parentElement.id,
+            value: e.target.value
+        })
+    }
+
+    const handleDueDate = (date, id) => {
+        dispatch({
+            type: 'DATE_EDIT',
+            id: id,
+            dueDate: date === null ? 'N/A' : date.toISOString()
+        })
     }
 
     return (
 
         <div
-            id={task.id}
+            id={taskId}
             className={`task ${done}`}
             draggable="true"
         >
@@ -45,36 +64,41 @@ export default function TaskMaker({ task, handleImportantWrite, handleEditWrite,
                 display: "flex",
                 flex: "1 0 auto"
             }}>
+
                 <input type="checkbox"
                     draggable="false"
                     onChange={handleDone}
-                    id={task.id}
+                    id={taskId}
                     checked={done}
                 ></input>
+
                 <input
                     draggable="false"
                     type="text"
                     value={taskText}
                     onChange={handleEdit}
-                    onBlur={saveEdit}
+                    onBlur={handleSaveEdit}
                     className="task-text"
                 ></input>
             </div>
+
             <div className="icon-container">
+
                 <img
                     draggable="false"
-                    src="./assets/important-svgrepo-com.svg"
-                    className={`${isImportant ? 'important' : ''} icon`}
+                    src="./assets/svg/important-svgrepo-com.svg"
+                    className={`${isImportant === 'important' ? 'important' : ''} icon`}
                     onClick={handleImportant}
                 >
                 </img>
+
                 <DatePicker
                     draggable="false"
                     dateFormat="dd-MM-yyyy"
                     selected={dueDate}
                     onChange={date => {
                         setDueDate(date)
-                        handleDueDateWrite(date, task.id)
+                        handleDueDate(date, taskId)
                     }}
                 />
             </div>

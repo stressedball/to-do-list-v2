@@ -1,6 +1,9 @@
-import { useEffect, useState } from "react"
+import { useState } from "react"
+import { useDispatch } from "react-redux";
 
-export default function AddProject({ setSelectedOption, addProject }) {
+export default function AddProject({ setSelectedOption }) {
+
+    const dispatch = useDispatch()
 
     const [newProject, setNewProject] = useState('')
 
@@ -12,27 +15,37 @@ export default function AddProject({ setSelectedOption, addProject }) {
             return
         }
 
-        const projectToAdd = { title: newProject }
-        addProject(projectToAdd)
+        const projectToAdd = { title: newProject, tasks: [] }
+
+        dispatch({ type: 'ADD_PROJECT', item: projectToAdd })
     }
 
     return (
         <div className="make project">
 
-            <div className="horizontal">
-                <p>Enter a new Project</p>
+            <div className="container">
 
-                <input value={newProject}
-                    onChange={handleChange}
-                    placeholder="Build your dream project"
-                ></input>
+                <div className="horizontal">
+                
+                    <input
+                        id="project-title"
+                        value={newProject}
+                        onChange={handleChange}
+                        placeholder="Build your dream project"
+                    ></input>
+                
+                    <button
+                        onClick={handleClick}
+                    >Add Project</button>
+                </div>
 
-                <button onClick={handleClick}>Add Project</button>
+                <p>You can append any task to your project by dragging the task and dropping it to the project.</p>
             </div>
 
-            <p>You can append any task to your project by dragging the task and dropping it to the Project once created.</p>
-
-            <button className="make-switcher" onClick={() => setSelectedOption('AddTask')}>Switch to Tasks</button>
+            <button
+                className="make-switcher"
+                onClick={() => setSelectedOption('AddTask')}
+            >Switch to Tasks</button>
 
         </div>
     )

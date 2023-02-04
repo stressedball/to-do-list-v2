@@ -1,12 +1,18 @@
+@font-face {
+  font-family: Monserrat;
+  src: url('/public/assets/font/Montserrat/static/Montserrat-Regular.ttf');
+}
+
 body {
   margin: 0;
+  font-family: Monserrat, sans-serif;
 }
 
 /* PERSISTENT */
 .App {
   display: grid;
   grid-template-columns: 30% 70%;
-  grid-template-rows: 30% 70%;
+  grid-template-rows: 20% 80%;
   height: 100vh;
 }
 
@@ -15,7 +21,7 @@ body {
 }
 
 .icon {
-  width: 30px;
+  width: 20px;
 }
 
 #main-container {
@@ -23,53 +29,28 @@ body {
   padding: 2rem;
 }
 
-a{
+a {
   color: inherit;
+}
+
+input{
+  font-family: Monserrat, sans-serif;
+
 }
 
 /* HEADER CONTAINER PERSISTENT */
 .make-switcher {
-  font-family:'Times New Roman', Times, serif;
+  font-family: Monserrat, sans-serif;
+  padding: 0.5rem;
+  font-size: 1.1rem;
+  width: 200px;
+  background-color: initial;
+  color: aliceblue;
+  border: 1px solid;
 }
 
-/* TASK ADD HEADER */
-.make {
-  grid-area: 1/2/1/2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  background-color: rgb(97, 156, 207);
-  padding: 1rem;
-  width: 500px;
-  height: 250px;
-  margin: auto;
-}
-
-.horizontal{
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: space-around;
-}
-
-#mark-as-important:hover {
-  filter: invert(12%) sepia(90%) saturate(7498%) hue-rotate(344deg) brightness(99%) contrast(105%);
-}
-
-/* PROJECT ADD HEADER */
-#task-search{
-  display: flex;
-  flex-direction: column;
-}
-
-input.rbt-input-main{
-  width: 100%;
-}
-
-.rbt-menu.dropdown-menu.show {
-  display: flex;
-  flex-direction: column;
+.make-switcher:hover{
+  cursor: pointer;
 }
 
 
@@ -81,8 +62,8 @@ input.rbt-input-main{
   background-color: aliceblue;
 }
 
-#sidebar-nav{
-  border: 1px solid black;
+#sidebar-nav {
+  padding: 0.5rem 0rem 0.5rem 1rem;
 }
 
 .links {
@@ -93,16 +74,29 @@ input.rbt-input-main{
   text-decoration: underline;
 }
 
-.project-box{
-  border: 1px solid black;
+
+.project-box {
+    border: 1px solid black;
   padding: 0.5rem;
   transition: background-color 500ms;
+  display: flex;
 }
 
-.highlight-box{
+.highlight-box {
   font-weight: bold;
   background-color: rgb(97, 156, 207);
   transition: background-color 500ms;
+}
+
+#project-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+
+}
+
+.project-same{
+  flex: 1 0 auto;
 }
 
 /* CONTAINERS */
@@ -129,7 +123,11 @@ input.rbt-input-main{
   padding: 0.5rem;
 }
 
-.task.true{
+.task:hover {
+  cursor: pointer;
+}
+
+.task.true {
   background-color: rgb(118, 162, 201);
   text-decoration: line-through;
 }
@@ -139,7 +137,40 @@ input.rbt-input-main{
   border: none;
   padding: 0.3rem;
 }
+
 .task-text:hover {
   /* border: inset 1px solid black; */
   box-shadow: 0 0 1px 0 black;
 }
+
+/* TASK ADD HEADER */
+.make {
+  grid-area: 1/2/1/2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgb(97, 156, 207);
+  padding: 1rem;
+}
+
+.horizontal {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-around;
+}
+
+#mark-as-important:hover {
+  filter: invert(12%) sepia(90%) saturate(7498%) hue-rotate(344deg) brightness(99%) contrast(105%);
+}
+
+#task-title{
+  width: clamp(300px, 500px, 800px  );
+}
+
+#project-title{
+  width: clamp(300px, 500px, 800px  );
+}
+
+/* PROJECT ADD HEADER */
