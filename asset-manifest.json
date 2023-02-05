@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/to-do-list-v2/static/css/main.cf42453e.css",
-    "main.js": "/to-do-list-v2/static/js/main.33a7a7d6.js",
+    "main.js": "/to-do-list-v2/static/js/main.77bfea9b.js",
     "static/media/Montserrat-Regular.ttf": "/to-do-list-v2/static/media/Montserrat-Regular.ceb11275ab638627a643.ttf",
     "index.html": "/to-do-list-v2/index.html",
     "main.cf42453e.css.map": "/to-do-list-v2/static/css/main.cf42453e.css.map",
-    "main.33a7a7d6.js.map": "/to-do-list-v2/static/js/main.33a7a7d6.js.map"
+    "main.77bfea9b.js.map": "/to-do-list-v2/static/js/main.77bfea9b.js.map"
   },
   "entrypoints": [
     "static/css/main.cf42453e.css",
-    "static/js/main.33a7a7d6.js"
+    "static/js/main.77bfea9b.js"
   ]
 }
