@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.css": "/stressedball/to-do-list-v2/static/css/main.fda7b3e3.css",
+    "main.js": "/stressedball/to-do-list-v2/static/js/main.eaa11650.js",
+    "static/media/Montserrat-Regular.ttf": "/stressedball/to-do-list-v2/static/media/Montserrat-Regular.ceb11275ab638627a643.ttf",
+    "index.html": "/stressedball/to-do-list-v2/index.html",
+    "main.fda7b3e3.css.map": "/stressedball/to-do-list-v2/static/css/main.fda7b3e3.css.map",
+    "main.eaa11650.js.map": "/stressedball/to-do-list-v2/static/js/main.eaa11650.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.fda7b3e3.css",
+    "static/js/main.eaa11650.js"
+  ]
+}
