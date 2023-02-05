@@ -3,6 +3,7 @@
   src: url('/public/assets/font/Montserrat/static/Montserrat-Regular.ttf');
 }
 
+
 body {
   margin: 0;
   font-family: Monserrat, sans-serif;
@@ -12,9 +13,13 @@ body {
 .App {
   display: grid;
   grid-template-columns: 30% 70%;
-  grid-template-rows: clamp(20%, 24%, 28%) auto;
+  grid-template-rows: 25% auto;
   height: 100vh;
 }
+
+/* @media screen and (max-width: ) {
+  
+} */
 
 .important {
   filter: invert(12%) sepia(90%) saturate(7498%) hue-rotate(344deg) brightness(99%) contrast(105%);
@@ -52,6 +57,63 @@ input {
   cursor: pointer;
 }
 
+.container {
+  width: clamp(60%, 70%, 80%);
+}
+
+/* TASK ADD HEADER */
+.make {
+  grid-area: 1/2/1/2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: rgb(97 156 207 / 53%);
+  padding: 1rem;
+}
+
+.horizontal {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  /* justify-content: space-around; */
+  gap: 1rem;
+}
+
+#mark-as-important:hover {
+  filter: invert(12%) sepia(90%) saturate(7498%) hue-rotate(344deg) brightness(99%) contrast(105%);
+}
+
+#task-title {
+  width: clamp(300px, 500px, 800px);
+}
+
+#project-title {
+  width: clamp(300px, 500px, 800px);
+}
+
+/* PROJECT ADD HEADER */
+
+
+/*  */
+#prompt-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background-color: #000000a1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+}
+
+#prompt {
+  background-color: white;
+  padding: 2rem;
+}
+
 /* SIDEBAR */
 
 #sidebar {
@@ -72,7 +134,8 @@ input {
 }
 
 .underline {
-  text-decoration: underline;
+  /* text-decoration: underline; */
+  background-color: #fff;
 }
 
 
@@ -120,6 +183,10 @@ input {
 .icon-container {
   display: flex;
   gap: 30px;
+  /* border: 1px solid; */
+  padding: 0.5rem 0.8rem 0.5rem 0.8rem;
+  background-color: rgb(142, 168, 190);
+  border-radius: 15px;
 }
 
 .task {
@@ -128,6 +195,7 @@ input {
   align-items: center;
   justify-content: space-between;
   border: 1px solid;
+  border-radius: 20px;
   flex: 1 0 auto;
   padding: 0.5rem;
 }
@@ -152,35 +220,3 @@ input {
   /* border: inset 1px solid black; */
   box-shadow: 0 0 1px 0 black;
 }
-
-/* TASK ADD HEADER */
-.make {
-  grid-area: 1/2/1/2;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-around;
-  background-color: rgb(97, 156, 207);
-  padding: 1rem;
-}
-
-.horizontal {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  justify-content: space-around;
-}
-
-#mark-as-important:hover {
-  filter: invert(12%) sepia(90%) saturate(7498%) hue-rotate(344deg) brightness(99%) contrast(105%);
-}
-
-#task-title {
-  width: clamp(300px, 500px, 800px);
-}
-
-#project-title {
-  width: clamp(300px, 500px, 800px);
-}
-
-/* PROJECT ADD HEADER */

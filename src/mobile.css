@@ -1,0 +1,32 @@
+@media screen and (max-width : 1200px) and (max-height: 950px) {
+
+    body{
+        font-size: 1.5rem;
+    }
+
+    .App {
+        display: grid;
+        grid-template-rows: repeat(4, 1fr);
+        grid-template-columns: auto;
+    }
+
+    .make {
+        grid-area: 1;
+    }
+
+    #sidebar{
+        grid-area: 2;
+    }
+
+    .sidebar-nav{
+        grid-area: 3;
+    }
+
+    #main-container{
+        grid-area: 4;
+    }
+
+    .icon{
+        width: 30px;
+    }
+}

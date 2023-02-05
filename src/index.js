@@ -1,10 +1,10 @@
 import './index.css';
+import './mobile.css'
 import App from './App';
 import { createBrowserRouter } from 'react-router-dom';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
-import Menu from './components/Menu';
 import { Provider } from 'react-redux';
 import { store } from './redux';
 import TasksOutlet from './components/Outlet';

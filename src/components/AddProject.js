@@ -36,6 +36,7 @@ export default function AddProject({ setSelectedOption }) {
                 
                     <button
                         onClick={handleClick}
+                        className="make-switcher"
                     >Add Project</button>
                 </div>
 

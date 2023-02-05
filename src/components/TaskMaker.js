@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import parseISO from 'date-fns/parseISO'
@@ -13,7 +13,6 @@ export default function TaskMaker({ task }) {
     const [taskText, setTaskText] = useState(taskDetails.title)
     const [dueDate, setDueDate] = useState(getDueDate(taskDetails.dueDate))
     const done = taskDetails.done ? taskDetails.done : false
-    const [inputIsFocus, setInputIsFocus] = useState(true)
     const dispatch = useDispatch()
 
     const handleImportant = e => {
@@ -52,27 +51,24 @@ export default function TaskMaker({ task }) {
         })
     }
 
-    useEffect(() => {
-        const input = document.querySelector(`input.task-text`);
-        input.addEventListener('focus', () => setInputIsFocus(false));
-        input.addEventListener('blur', () => setInputIsFocus(true));
-
-        return () => {
-            input.removeEventListener('focus', () => setInputIsFocus(false));
-            input.removeEventListener('blur', () => setInputIsFocus(true));
-        };
-    }, []);
+    const handleRemove = e => {
+        dispatch({
+            type: 'ID_REMOVE',
+            id: e.target.id
+        })
+    }
 
     return (
 
         <div
             id={taskId}
             className={`task ${done}`}
-            draggable={`${inputIsFocus}`}
+            draggable={true}
         >
             <div style={{
                 display: "flex",
-                flex: "1 0 auto"
+                flex: "1 0 auto",
+                gap: "0.3rem"
             }}>
                 <input type="checkbox"
                     draggable="false"
@@ -98,6 +94,7 @@ export default function TaskMaker({ task }) {
                     src="./assets/svg/important-svgrepo-com.svg"
                     className={`${isImportant === 'important' ? 'important' : ''} icon`}
                     onClick={handleImportant}
+                    alt='set-to-important-icon'
                 >
                 </img>
 
@@ -111,11 +108,11 @@ export default function TaskMaker({ task }) {
                     }}
                 />
                 <img
-                    onClick={() => {
-                        // setIsEdit(true)
-                    }}
+                    onClick={(e) => { handleRemove(e) }}
                     src="./assets/svg/trash.svg"
                     className="icon"
+                    id={taskId}
+                    alt="remove-icon"
                 ></img>
             </div>
         </div>

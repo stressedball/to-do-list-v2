@@ -52,8 +52,7 @@ function localStorageReducer(state = initialState, action) {
             localStorage.setItem(action.id, JSON.stringify(item))
             break
         case 'ID_REMOVE':
-            console.log(action.id)
-            // localStorage.removeItem(action.id)
+            localStorage.removeItem(action.id)
             break
 
     }

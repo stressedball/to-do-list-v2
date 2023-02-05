@@ -59,6 +59,7 @@ export default function AddTask({ setSelectedOption }) {
                         onChange={handleChange}
                         placeholder='So much to do...Where should I start?'></input>
                     <button
+                        className="make-switcher"
                         onClick={handleClick}
                     >Add task</button>
                 </div>
@@ -74,12 +75,13 @@ export default function AddTask({ setSelectedOption }) {
                             }}
                             src="./assets/svg/important-svgrepo-com.svg"
                             onClick={handleImportant}
-                            alt='important-icon'
+                            alt='set-to-important-icon'
                         ></img>
                     </div>
                     <img
                         src="./assets/svg/calendar-svgrepo-com.svg"
                         className="icon"
+                        alt="calendar-icon"
                     ></img>
 
                     <DatePicker
