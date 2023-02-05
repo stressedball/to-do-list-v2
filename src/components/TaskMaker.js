@@ -1,13 +1,11 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import parseISO from 'date-fns/parseISO'
 import isValid from 'date-fns/isValid';
 import { useDispatch } from "react-redux";
 
-export default function TaskMaker({
-    task,
-}) {
+export default function TaskMaker({ task }) {
 
     const taskId = task[0]
     const taskDetails = task[1]
@@ -15,8 +13,9 @@ export default function TaskMaker({
     const [taskText, setTaskText] = useState(taskDetails.title)
     const [dueDate, setDueDate] = useState(getDueDate(taskDetails.dueDate))
     const done = taskDetails.done ? taskDetails.done : false
+    const [inputIsFocus, setInputIsFocus] = useState(true)
     const dispatch = useDispatch()
-    
+
     const handleImportant = e => {
         dispatch({
             type: 'SET_IMPORTANT',
@@ -53,18 +52,28 @@ export default function TaskMaker({
         })
     }
 
+    useEffect(() => {
+        const input = document.querySelector(`input.task-text`);
+        input.addEventListener('focus', () => setInputIsFocus(false));
+        input.addEventListener('blur', () => setInputIsFocus(true));
+
+        return () => {
+            input.removeEventListener('focus', () => setInputIsFocus(false));
+            input.removeEventListener('blur', () => setInputIsFocus(true));
+        };
+    }, []);
+
     return (
 
         <div
             id={taskId}
             className={`task ${done}`}
-            draggable="true"
+            draggable={`${inputIsFocus}`}
         >
             <div style={{
                 display: "flex",
                 flex: "1 0 auto"
             }}>
-
                 <input type="checkbox"
                     draggable="false"
                     onChange={handleDone}
@@ -101,6 +110,13 @@ export default function TaskMaker({
                         handleDueDate(date, taskId)
                     }}
                 />
+                <img
+                    onClick={() => {
+                        // setIsEdit(true)
+                    }}
+                    src="./assets/svg/trash.svg"
+                    className="icon"
+                ></img>
             </div>
         </div>
     )

@@ -1,14 +1,13 @@
 import './index.css';
 import App from './App';
-import AllTasks from './components/Outlet/AllTasks';
-import WeekTasks from './components/Outlet/WeekTasks';
-import ImportantTasks from './components/Outlet/ImportantTasks';
-import DoneTasks from './components/Outlet/DoneTasks';
-import Project from './components/Outlet/Project';
 import { createBrowserRouter } from 'react-router-dom';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { RouterProvider } from 'react-router-dom';
+import Menu from './components/Menu';
+import { Provider } from 'react-redux';
+import { store } from './redux';
+import TasksOutlet from './components/Outlet';
 
 function Root() {
 
@@ -19,40 +18,44 @@ function Root() {
       />,
       children: [
         {
-          path: "/",
-          element: <AllTasks
-          />
+          path: "/all-tasks",
+          element: <TasksOutlet />
         },
         {
           path: "/week-tasks",
-          element: <WeekTasks
-          />
+          element: <TasksOutlet />
         },
         {
           path: "/important-tasks",
-          element: <ImportantTasks
-          />
+          element: <TasksOutlet />
         },
         {
           path: "/done-tasks",
-          element: <DoneTasks
-          />
+          element: <TasksOutlet />
         },
         {
-          path: "/project/:id",
-          element: <Project
-          />
+          path: "/:id",
+          element: <TasksOutlet />
         }
       ]
     }
   ]);
 
   return (
-    <RouterProvider router={router}>
-      <Root />
-    </RouterProvider>
+    <Provider store={store}>
+
+      <RouterProvider router={router}>
+        <Root />
+      </RouterProvider>
+
+    </Provider>
+
   );
 };
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(<Root />);
+root.render(
+  <React.StrictMode>
+    <Root />
+  </React.StrictMode>
+);

@@ -12,7 +12,7 @@ body {
 .App {
   display: grid;
   grid-template-columns: 30% 70%;
-  grid-template-rows: 20% 80%;
+  grid-template-rows: clamp(20%, 24%, 28%) auto;
   height: 100vh;
 }
 
@@ -33,9 +33,8 @@ a {
   color: inherit;
 }
 
-input{
+input {
   font-family: Monserrat, sans-serif;
-
 }
 
 /* HEADER CONTAINER PERSISTENT */
@@ -49,20 +48,22 @@ input{
   border: 1px solid;
 }
 
-.make-switcher:hover{
+.make-switcher:hover {
   cursor: pointer;
 }
-
 
 /* SIDEBAR */
 
 #sidebar {
+  grid-area: 1/1/1/1;
+}
+
+.sidebar {
   padding: 1rem;
-  grid-area: 1/1/3/1;
   background-color: aliceblue;
 }
 
-#sidebar-nav {
+.sidebar-nav {
   padding: 0.5rem 0rem 0.5rem 1rem;
 }
 
@@ -76,10 +77,12 @@ input{
 
 
 .project-box {
-    border: 1px solid black;
   padding: 0.5rem;
   transition: background-color 500ms;
   display: flex;
+  height: 50px;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .highlight-box {
@@ -89,14 +92,20 @@ input{
 }
 
 #project-container {
-  position: relative;
   display: flex;
   flex-direction: column;
-
 }
 
-.project-same{
-  flex: 1 0 auto;
+#project-display {
+  grid-area: 2/1/2/1;
+}
+
+.project-same {
+  /* flex: 1 0 auto; */
+  width: 230px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 /* CONTAINERS */
@@ -136,6 +145,7 @@ input{
   flex: 1 0 auto;
   border: none;
   padding: 0.3rem;
+  background-color: inherit;
 }
 
 .task-text:hover {
@@ -165,12 +175,12 @@ input{
   filter: invert(12%) sepia(90%) saturate(7498%) hue-rotate(344deg) brightness(99%) contrast(105%);
 }
 
-#task-title{
-  width: clamp(300px, 500px, 800px  );
+#task-title {
+  width: clamp(300px, 500px, 800px);
 }
 
-#project-title{
-  width: clamp(300px, 500px, 800px  );
+#project-title {
+  width: clamp(300px, 500px, 800px);
 }
 
 /* PROJECT ADD HEADER */

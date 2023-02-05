@@ -31,7 +31,6 @@ function localStorageReducer(state = initialState, action) {
             localStorage.setItem(action.id, JSON.stringify(item))
             break
         case 'TITLE_EDIT':
-            console.log('redux', item)
             item.title = action.value
             localStorage.setItem(action.id, JSON.stringify(item))
             break
